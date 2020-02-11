@@ -14,23 +14,23 @@
 
 void choose_case(int max, int mid, int min, t_push *a)
 {
-	if (mid == a->array[0] && min == a->array[1])
+	if (max == a->array[0] && min == a->array[1])
 	{
 		case_1();
 	}
-	else if (max == a->array[0] && mid == a->array[1])
+	else if (min == a->array[0] && mid == a->array[1])
 	{
 		case_2();
 	}
-	else if (max == a->array[0] && min == a->array[1])
+	else if (mid == a->array[0] && min == a->array[1])
 	{
 		case_3();
 	}
-	else if (min == a->array[0] && max == a->array[1])
+	else if (mid == a->array[0] && max == a->array[1])
 	{
 		case_4();
 	}
-	else if (mid == a->array[0] && max == a->array[1])
+	else if (min == a->array[0] && max == a->array[1])
 	{
 		case_5();
 	}
