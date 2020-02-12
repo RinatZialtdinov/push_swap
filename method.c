@@ -20,14 +20,14 @@ void push(t_push **from, t_push **to, char str)
         (*from)->array[(*from)->len - 1] = 0;
         (*to)->len++;
         (*from)->len--;
-        // if (str == 'a')
-        // {
-        //     write(1, "pb\n", 3);
-        // }
-        // else
-        // {
-        //     write(1, "pa\n", 3);
-        // }
+        if (str == 'a')
+        {
+            write(1, "pb\n", 3);
+        }
+        else
+        {
+            write(1, "pa\n", 3);
+        }
     }
 }
 
@@ -40,14 +40,14 @@ void swap(t_push **el, char str)
         k = (*el)->array[(*el)->len - 1];
         (*el)->array[(*el)->len - 1] = (*el)->array[(*el)->len - 2];
         (*el)->array[(*el)->len - 2] = k;
-        // if (str == 'a')
-        // {
-        //     write(1, "sa\n", 3);
-        // }
-        // else
-        // {
-        //     write(1, "sb\n", 3);
-        // } 
+        if (str == 'a')
+        {
+            write(1, "sa\n", 3);
+        }
+        else
+        {
+            write(1, "sb\n", 3);
+        } 
     }
 }
 
@@ -64,14 +64,14 @@ void rotate(t_push **el, char str)
         len--;
     }
     (*el)->array[0] = k;
-    // if (str == 'a')
-    // {
-    //     write(1, "ra\n", 3);
-    // }
-    // else
-    // {
-    //     write(1, "rb\n", 3);
-    // } 
+    if (str == 'a')
+    {
+        write(1, "ra\n", 3);
+    }
+    else
+    {
+        write(1, "rb\n", 3);
+    } 
 }
 
 void reverse_rotate(t_push **el, char str)
@@ -88,12 +88,12 @@ void reverse_rotate(t_push **el, char str)
         i++;
     }
     (*el)->array[(*el)->len - 1] = k;
-    // if (str == 'a')
-    // {
-    //     write(1, "rra\n", 4);
-    // }
-    // else
-    // {
-    //     write(1, "rrb\n", 4);
-    // } 
+    if (str == 'a')
+    {
+        write(1, "rra\n", 4);
+    }
+    else
+    {
+        write(1, "rrb\n", 4);
+    } 
 }

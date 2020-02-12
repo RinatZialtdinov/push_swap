@@ -22,6 +22,7 @@ void printf_massiv(t_push *a, t_push *b)
 			m++;
 		}
 		printf("\n");
+		printf("m - %i\n", m);
 		// printf("el - %i\n", b->len);
 		m = 0;
 		printf("b massiv\n");
@@ -455,6 +456,13 @@ int main(int argc, char **argv)
 	}
 	reserve_array(&a, &b);
 	solution(a, b);
-	printf_massiv(a, b);
+	// printf_massiv(a, b);
+	// if (check_array(a, b) == 1)
+	// 	printf("OK\n");
+	// else
+	// {
+	// 	printf("KO\n");
+	// }
+	
 	return (0);
 }
