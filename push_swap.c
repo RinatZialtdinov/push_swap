@@ -12,6 +12,14 @@
 
 #include "push_swap.h"
 
+void		free_all(t_push *a, t_push *b)
+{
+	free(a->array);
+	free(a);
+	free(b->array);
+	free(b);
+}
+
 void printf_massiv(t_push *a, t_push *b)
 {
 	int	m = 0;
@@ -441,20 +449,86 @@ void reserve_array(t_push **a, t_push **b)
 	}
 }
 
+int validation_a(int argc, char **argv)
+{
+	int i;
+	int j;
+
+	j = 1;
+	while (j != argc)
+	{
+		i = 0;
+		while (argv[j][i] != '\0')
+		{
+			if ((argv[j][i] < '0' || argv[j][i] > '9') && (argv[j][i] != '-' && argv[j][i] != ' '))
+			{
+				return (0);
+			}
+			i++;
+		}
+		j++;
+	}
+	return (1);
+}
+
+int validation_b(t_push *a)
+{
+	int i;
+	int k;
+	int m;
+
+	i = 0;
+	while (i != a->len)
+	{
+		k = a->array[i];
+		m = i;
+		while (i + 1 != a->len)
+		{
+			if (k == a->array[i + 1])
+			{
+				return (0);
+			}
+			i++;
+		}
+		i = m;
+		i++;
+	}
+	return (1);
+}
+
 int main(int argc, char **argv)
 {
 	int *array;
 	t_push *a;
 	t_push *b;
 
-
 	a = (t_push *)malloc(sizeof(t_push));
 	b = (t_push *)malloc(sizeof(t_push));
+	if ((validation_a(argc, argv)) == 0)
+	{
+		write(1, "Error\n", 6);
+		free (a);
+		free (b);
+		return (0);
+	}
 	if (argc > 1)
 	{
-		izmenenie_str(&a, &b, argc, argv);
+		if (izmenenie_str(&a, &b, argc, argv) == -1)
+		{
+			write(1, "Error\n", 6);
+			free (a);
+			free (b);
+			return (0);
+		}
 	}
 	reserve_array(&a, &b);
+	if (validation_b(a) == 0)
+	{
+		write(1, "Error\n", 6);
+		free (a);
+		free (b);
+		return (0);
+	}
 	solution(a, b);
 	// printf_massiv(a, b);
 	// if (check_array(a, b) == 1)
@@ -463,6 +537,6 @@ int main(int argc, char **argv)
 	// {
 	// 	printf("KO\n");
 	// }
-	
+	free_all(a, b);
 	return (0);
 }

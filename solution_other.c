@@ -81,11 +81,113 @@ int check_num(t_push *b, int num)
 		}
 		i++;
 	}
-	if (count > 43)
+	if (b->len / 2 + 5 > 45)
 	{
-		return (0);
+		if (count > b->len / 2 + 5)
+		{
+			return (0);
+		}
 	}
+	else
+	{
+		if (count >= 38)
+		{
+			return (0);
+		}
+	}
+	
 	return (1);
+}
+
+int find_min_num(int *b, int len)
+{
+	int min;
+	int i;
+
+	if (len == 0)
+	{
+		return (-1);
+	}
+	i = 1;
+	min = b[0];
+	while (len != i)
+	{
+		if (min > b[i])
+			min = b[i];
+		i++;
+	}
+	i = 0;
+	while (b[i] != min && i != len)
+	{
+		i++;
+	}
+	return (i);
+}
+
+int check_min_num(t_push *b)
+{
+	int i;
+	int num;
+	int *copy;
+
+	copy = (int *)malloc(sizeof(int) * (b->len));
+	i = 0;
+	while (i != b->len)
+	{
+		copy[i] = b->array[i];
+		i++;
+	}
+	num = find_min(b);
+	num = b->array[num];
+	i = 0;
+	while (i != 44)
+	{
+		copy[num] = 5000000 + num;
+		num = find_min_num(copy, b->len);
+		i++;
+	}
+	num = copy[num];
+	// free(copy);
+	return (num);
+}
+
+void solution_other_b_a(t_push *a, t_push *b, t_len_ten ind)
+{
+	int i;
+	int max;
+	int min;
+	int copy;
+
+	copy = a->array[0];
+	min = find_min(b);
+	min = b->array[min];
+	max = find_max(b);
+	max =b->array[max];
+	i = a->len - 1;
+	while (i != 0)
+	{
+		// printf_massiv(a, b);
+		if (a->array[i] > min && a->array[i] < max)
+		{
+			while (i != a->len - 1)
+			{
+				rotate(&a, 'a');
+				i++;
+			}
+			push(&a, &b, 'a');
+			i = a->len;
+		}
+		i--;
+	}
+	// printf("_______b________a_\n");
+	// printf_massiv(a, b);
+	while (copy != a->array[0])
+	{
+		reverse_rotate(&a, 'a');
+	}
+	// printf("_______b____11111____a_\n");
+	// printf_massiv(a, b);
+	solution_other_c(a, b, ind);
 }
 
 void solution_other_b(t_push *a, t_push *b, t_len_ten ind)
@@ -93,6 +195,7 @@ void solution_other_b(t_push *a, t_push *b, t_len_ten ind)
 	int med;
 	int i;
 	int min;
+	// int num;
 
 	med = find_med_100_b(b);
 	while (1)
@@ -100,13 +203,17 @@ void solution_other_b(t_push *a, t_push *b, t_len_ten ind)
 		// printf("____www______solution_other_BBBBB_________\n");
 		// printf_massiv(a, b);
 		check_more_med(b, &med);
+		//med = find_med_100_b(b);
+		//num = check_min_num(b);
+		// printf("num - %i\n", num);
+		// printf_massiv(a, b);
 		i = b->len - 1;
 		min = find_min(b);
-		while (med > b->array[i] && i != -1 && b->len != 0 && check_num(b, b->array[i]) == 1)
+		while (med > b->array[i] && i != -1 && b->len != 0 && check_num(b, b->array[i]) == 1)  //b->array[i] < num)
 		{
 			i--;
 		}
-		if (b->len <= 45)
+		if (b->len < 46)
 		{
 			break ;
 		}
@@ -117,7 +224,7 @@ void solution_other_b(t_push *a, t_push *b, t_len_ten ind)
 	}
 	// printf("__________solution_other_BBBBB_________\n");
 	// printf_massiv(a, b);
-	solution_other_c(a, b, ind);
+	solution_other_b_a(a, b, ind);
 }
 
 void solution_other(t_push *a, t_push *b, t_len_ten ind)

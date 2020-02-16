@@ -16,22 +16,30 @@
 
 typedef struct s_push
 {
-    int len;
-    int *array;
+	int len;
+	int *array;
 }              t_push;
 
 typedef struct s_len_ten
 {
-    int ind;
-    int item;
-    int len_a;
-    int len_b;
-    int start;
-    int end;
-    int turn;
-    int max;
+	int ind;
+	int item;
+	int len_a;
+	int len_b;
+	int start;
+	int end;
+	int turn;
+	int max;
 }               t_len_ten;
 
+void reserve_array(t_push **a, t_push **b);
+int validation_b(t_push *a);
+int validation_a(int argc, char **argv);
+int		ft_strcmp(const char *str1, const char *str2);
+void reverse_rotate_checker(t_push **el);
+void rotate_checker(t_push **el);
+void swap_checker(t_push **el);
+void push_checker(t_push **from, t_push **to);
 void solution_other(t_push *a, t_push *b, t_len_ten ind);
 int check_array(t_push *a, t_push *b);
 int find_max(t_push *b);
@@ -51,7 +59,7 @@ void push(t_push **from, t_push **to, char str);
 void swap(t_push **el, char str);
 void rotate(t_push **el, char str);
 void reverse_rotate(t_push **el, char str);
-void izmenenie_str(t_push **a, t_push **b, int argc, char **argv);
+int izmenenie_str(t_push **a, t_push **b, int argc, char **argv);
 int proverka_str(t_push **a, t_push **b, char **argv);
 void how_many_el(t_push **a, t_push **b, char **argv);
 void solution_less_3(t_push *el);

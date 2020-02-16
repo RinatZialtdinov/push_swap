@@ -1,16 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_str_array.c                                :+:      :+:    :+:   */
+/*   function_1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: damerica <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/08 16:45:03 by damerica          #+#    #+#             */
-/*   Updated: 2020/02/08 16:45:04 by damerica         ###   ########.fr       */
+/*   Created: 2020/02/16 16:05:52 by damerica          #+#    #+#             */
+/*   Updated: 2020/02/16 16:05:53 by damerica         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
+
+void reserve_array(t_push **a, t_push **b)
+{
+	int i;
+
+	i = 0;
+	while ((*a)->len != i)
+	{
+		(*b)->array[i] = (*a)->array[(*a)->len - i - 1];
+		i++;
+	}
+	i = 0;
+	while ((*a)->len != i)
+	{
+		(*a)->array[i] = (*b)->array[i];
+		(*b)->array[i] = 0;
+		i++;
+	}
+}
+
+int check_array(t_push *a, t_push *b)
+{
+	int k;
+	int i;
+
+	i = 0;
+	k = a->array[i];
+	if (b->len == 0)
+	{
+		while (i != a->len - 2)
+		{
+			if (k > a->array[i + 1])
+			{
+				k = a->array[i + 1];
+				i++;
+			}
+			else
+			{
+				break ;
+			}
+		}
+		if (i == a->len - 2)
+			return (1);
+	}
+	return (0);
+}
 
 void how_many_el(t_push **a, t_push **b, char **argv)
 {
@@ -142,6 +188,54 @@ int izmenenie_str(t_push **a, t_push **b, int argc, char **argv)
 				return (-1);
 		}
 		(*a)->array[i] = num * minus;
+		i++;
+	}
+	return (1);
+}
+
+
+int validation_a(int argc, char **argv)
+{
+	int i;
+	int j;
+
+	j = 1;
+	while (j != argc)
+	{
+		i = 0;
+		while (argv[j][i] != '\0')
+		{
+			if ((argv[j][i] < '0' || argv[j][i] > '9') && (argv[j][i] != '-' && argv[j][i] != ' '))
+			{
+				return (0);
+			}
+			i++;
+		}
+		j++;
+	}
+	return (1);
+}
+
+int validation_b(t_push *a)
+{
+	int i;
+	int k;
+	int m;
+
+	i = 0;
+	while (i != a->len)
+	{
+		k = a->array[i];
+		m = i;
+		while (i + 1 != a->len)
+		{
+			if (k == a->array[i + 1])
+			{
+				return (0);
+			}
+			i++;
+		}
+		i = m;
 		i++;
 	}
 	return (1);

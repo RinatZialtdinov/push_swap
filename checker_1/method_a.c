@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   method.c                                           :+:      :+:    :+:   */
+/*   method_a.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: damerica <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/08 18:42:29 by damerica          #+#    #+#             */
-/*   Updated: 2020/02/08 18:42:30 by damerica         ###   ########.fr       */
+/*   Created: 2020/02/13 18:26:23 by damerica          #+#    #+#             */
+/*   Updated: 2020/02/13 18:26:24 by damerica         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-void push(t_push **from, t_push **to, char str)
+void push_checker(t_push **from, t_push **to)
 {
 	if ((*from)->len != 0)
 	{
@@ -20,18 +20,18 @@ void push(t_push **from, t_push **to, char str)
 		(*from)->array[(*from)->len - 1] = 0;
 		(*to)->len++;
 		(*from)->len--;
-		if (str == 'a')
-		{
-			write(1, "pb\n", 3);
-		}
-		else
-		{
-			write(1, "pa\n", 3);
-		}
+		// if (str == 'a')
+		// {
+		//     write(1, "pb\n", 3);
+		// }
+		// else
+		// {
+		//     write(1, "pa\n", 3);
+		// }
 	}
 }
 
-void swap(t_push **el, char str)
+void swap_checker(t_push **el)
 {
 	int k;
 
@@ -40,18 +40,18 @@ void swap(t_push **el, char str)
 		k = (*el)->array[(*el)->len - 1];
 		(*el)->array[(*el)->len - 1] = (*el)->array[(*el)->len - 2];
 		(*el)->array[(*el)->len - 2] = k;
-		if (str == 'a')
-		{
-			write(1, "sa\n", 3);
-		}
-		else
-		{
-			write(1, "sb\n", 3);
-		} 
+		// if (str == 'a')
+		// {
+		//     write(1, "sa\n", 3);
+		// }
+		// else
+		// {
+		//     write(1, "sb\n", 3);
+		// } 
 	}
 }
 
-void rotate(t_push **el, char str)
+void rotate_checker(t_push **el)
 {
 	int k;
 	int len;
@@ -64,17 +64,17 @@ void rotate(t_push **el, char str)
 		len--;
 	}
 	(*el)->array[0] = k;
-	if (str == 'a')
-	{
-		write(1, "ra\n", 3);
-	}
-	else
-	{
-		write(1, "rb\n", 3);
-	} 
+	// if (str == 'a')
+	// {
+	//     write(1, "ra\n", 3);
+	// }
+	// else
+	// {
+	//     write(1, "rb\n", 3);
+	// } 
 }
 
-void reverse_rotate(t_push **el, char str)
+void reverse_rotate_checker(t_push **el)
 {
 	int k;
 	int i;
@@ -88,12 +88,12 @@ void reverse_rotate(t_push **el, char str)
 		i++;
 	}
 	(*el)->array[(*el)->len - 1] = k;
-	if (str == 'a')
-	{
-		write(1, "rra\n", 4);
-	}
-	else
-	{
-		write(1, "rrb\n", 4);
-	} 
+	// if (str == 'a')
+	// {
+	//     write(1, "rra\n", 4);
+	// }
+	// else
+	// {
+	//     write(1, "rrb\n", 4);
+	// } 
 }
